@@ -139,7 +139,7 @@
 			<scope>${current.scope}</scope>
 		</dependency>
 
-	<!-- MOXY jako JSON/XML POJO mapping -->
+		<!-- MOXY jako JSON/XML POJO mapping -->
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-moxy</artifactId>
@@ -188,6 +188,9 @@
 			<testResource>
 				<directory>src/test/resources</directory>
 				<filtering>true</filtering>
+				<includes>
+					<include>**/*.json</include>
+				</includes>
 			</testResource>
 
 			<!-- Copy context and properties files in order to be available for tests -->
