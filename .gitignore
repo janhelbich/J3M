@@ -1,2 +1,10 @@
 /J3MSevrver/target/
 /J3MSevrver/nb-configuration.xml
+*.idea
+*.classpath
+*.project
+.settings/
+target/
+/J3MClient/target
+/build
+*.iml
