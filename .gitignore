@@ -8,3 +8,4 @@ target/
 /J3MClient/target
 /build
 *.iml
+/J3MClient/gradle/local.properties
