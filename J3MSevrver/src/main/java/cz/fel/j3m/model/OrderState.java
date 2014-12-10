@@ -27,7 +27,6 @@ public class OrderState implements Serializable {
 	// 1 - new, 2 - processed, 3 - sent, ... whatever
 	@Id
 	@Column(name = "order_state_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long orderStateId;
 
 	@Column(name = "name")

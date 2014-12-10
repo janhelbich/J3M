@@ -18,7 +18,6 @@ public class Payment implements Serializable {
 
 	@Id
 	@Column(name = "payment_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long paymentId;
 
 	@Column(name = "name")

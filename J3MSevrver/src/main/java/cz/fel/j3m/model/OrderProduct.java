@@ -27,7 +27,7 @@ public class OrderProduct implements Serializable {
 
 	@Id
 	@Column(name = "order_product_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long orderProductId;
 
 	@Embedded

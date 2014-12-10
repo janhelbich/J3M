@@ -1,5 +1,7 @@
 package cz.fel.j3m.service;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Singleton;
@@ -23,7 +25,10 @@ import org.springframework.stereotype.Component;
 
 import cz.fel.j3m.dao.BazaarDAO;
 import cz.fel.j3m.model.BazaarOrder;
+import cz.fel.j3m.model.Currency;
 import cz.fel.j3m.model.OrderState;
+import cz.fel.j3m.model.Price;
+import cz.fel.j3m.model.Transport;
 
 @Singleton
 @Component
@@ -106,6 +111,49 @@ public class BazaarRESTServiceImpl implements BazaarRESTService {
 		}
 	}
 
+	@GET
+	@Path("/import")
+	public void importData() {
+		
+		createOrderState("Zaplacená", 1L);
+		createOrderState("Odeslaná", 2L);
+		createOrderState("Vyřešená", 3L);
+		createOrderState("Pozastavená", 4L);
+		createOrderState("Objednávka zrušena", 6L);
+		
+		Currency czk = new Currency();
+		czk.setBid(BigDecimal.ONE);
+		czk.setCurrencyCode("CZK");
+		czk.setBidUpdated(new Date());
+		dao.persist(czk);
+		
+		Transport t1 = new Transport();
+		t1.setTransportId(1L);
+		t1.setName("Osobní odběr");
+		t1.setPrice(new Price(BigDecimal.ZERO, czk));
+		
+		Transport t2 = new Transport();
+		t2.setTransportId(2L);
+		t2.setName("Česká pošta");
+		t2.setPrice(new Price(new BigDecimal(70), czk));
+		
+		Transport t3 = new Transport();
+		t3.setTransportId(3L);
+		t3.setName("PPL");
+		t3.setPrice(new Price(new BigDecimal(120), czk));
+		
+		dao.persist(t1);
+		dao.persist(t2);
+		dao.persist(t3);
+	}
+
+	private void createOrderState(String name, Long id) {
+		OrderState s = new OrderState();
+		s.setName(name);
+		s.setOrderStateId(id);
+		dao.persist(s);
+	}
+	
 	private InternalServerErrorException internalServerError() {
 		return new InternalServerErrorException("Oops, something went wrong!");
 	}

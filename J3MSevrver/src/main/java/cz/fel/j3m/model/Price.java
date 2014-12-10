@@ -11,6 +11,14 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class Price implements Serializable {
 
+	public Price(){
+	}
+
+	public Price(BigDecimal amount, Currency currency) {
+		this.amount = amount;
+		this.currency = currency;
+	}
+
 	@Column(name = "amount", nullable = false)
 	private BigDecimal amount;
 

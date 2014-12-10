@@ -2,6 +2,7 @@ package testutils;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Random;
 
 import cz.fel.j3m.model.BazaarOrder;
 import cz.fel.j3m.model.BazaarProduct;
@@ -21,6 +22,7 @@ public class TestUtils {
 		order.setOrderDate(new Date());
 		order.setZip("test zip");
 		order.setOrderUrl("test order url");
+		order.setOrderId(new Random().nextLong());
 
 		Price price = getPrice(currency);
 		order.setPrice(price);
@@ -41,13 +43,14 @@ public class TestUtils {
 		p.setPhotoUrl("test url");
 		p.setPrice(getPrice(c));
 		p.setProductSize("XL");
+		p.setProductId(new Random().nextLong());
 		
 		OrderProduct op = new OrderProduct();
 		op.setDiscount(BigDecimal.ZERO);
 		op.setOrder(o);
 		op.setPrice(p.getPrice());
 		op.setProduct(p);
-		
+		op.setOrderProductId(new Random().nextLong());
 		o.getProducts().add(op);
 		
 		return op;
