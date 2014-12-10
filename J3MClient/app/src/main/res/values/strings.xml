@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">J3MClient</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="list_of_orders">List of orderws</string>
     <string name="action_settings">Settings</string>
 
 </resources>
