@@ -14,7 +14,7 @@ import cz.fel.j3m.model.OrderState;
 import cz.fel.j3m.model.Payment;
 import cz.fel.j3m.model.Transport;
 
-@Repository
+@Repository  
 public class BazaarDAOImpl implements BazaarDAO {
 
 	@PersistenceContext
@@ -136,6 +136,13 @@ public class BazaarDAOImpl implements BazaarDAO {
 		}
 
 		return entityManger.merge(managed);
+	}
+	
+	
+
+	@Override
+	public <E> E find(Object id, Class<E> clazz) {
+		return entityManger.find(clazz, id);
 	}
 
 	public boolean notEmpty(String s) {

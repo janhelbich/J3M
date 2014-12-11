@@ -36,5 +36,8 @@ public interface BazaarDAO {
 	public BazaarOrder updateOrder(BazaarOrder order) throws Exception;
 
 	public EntityManager getEntityManager();
+	
+	@Transactional
+	public <E> E find(Object id, Class<E> clazz);
 
 }

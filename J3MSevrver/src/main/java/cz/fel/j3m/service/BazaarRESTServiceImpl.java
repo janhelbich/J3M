@@ -3,6 +3,7 @@ package cz.fel.j3m.service;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Singleton;
 import javax.ws.rs.BadRequestException;
@@ -52,7 +53,7 @@ public class BazaarRESTServiceImpl implements BazaarRESTService {
 	@Override
 	@GET
 	@Path("/neworders")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<BazaarOrder> getNewOrders() {
 		return dao.findOrdersByState(OrderState.NEW_STATE);
 	}
@@ -147,6 +148,57 @@ public class BazaarRESTServiceImpl implements BazaarRESTService {
 		dao.persist(t3);
 	}
 
+	@GET
+	@Path("/import-orders")
+	public void importOrders() {
+		
+		Currency czk = dao.find("CZK", Currency.class);
+		OrderState state = dao.find(1L, OrderState.class);
+		Transport tr = dao.find(1L, Transport.class);
+		
+		createOrder("jan.helbich@email.com", "Jan", "Helbich", 
+				"222", "test0.naseshop.cz", 
+				"Lazarska", czk, tr, state);
+		
+		createOrder("jan.lantora@seznam.com", "Jan", "Lantora", 
+				"132", "test0.naseshop.cz", 
+				"Hranicni", czk, tr, state);
+		
+		createOrder("jan.herzan@gmail.com", "Jan", "Herzan", 
+				"666", "test0.naseshop.cz", 
+				"Slavna", czk, tr, state);
+		
+		createOrder("mira.nedved@gmail.com", "Miroslav", "Nedved", 
+				"66/1", "test0.naseshop.cz", 
+				"Nezvalova", czk, tr, state);
+		
+		createOrder("pavel.stetina@email.com", "Pavel", "Stetina", 
+				"23/2", "test0.naseshop.cz", 
+				"K mostu", czk, tr, state);
+	
+	}
+	
+	private void createOrder(String email, String name, String surname, 
+			String hn, String url, String street, Currency czk, Transport tr, OrderState state) {
+		BazaarOrder o = new BazaarOrder();
+		o.setOrderId(new Random().nextLong());
+		o.setCity("Praha");
+		o.setCustomerNote("");
+		o.setEmail(email);
+		o.setFirstName(name);
+		o.setHouseNumber(hn);
+		o.setOrderDate(new Date());
+		o.setOrderUrl(url);
+		o.setPrice(new Price(new BigDecimal(new Random().nextInt(10000)), czk));
+		o.setState(state);
+		o.setStreet(street);
+		o.setSurname(surname);
+		o.setTransport(tr);
+		o.setZip("12345");
+		
+		dao.persist(o);
+	}
+	
 	private void createOrderState(String name, Long id) {
 		OrderState s = new OrderState();
 		s.setName(name);
