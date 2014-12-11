@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cz.cvut.fel.j3mclient.app.view.activity.ShowOrder"
+            android:name="cz.cvut.fel.j3mclient.app.view.activity.ShowOrder_"
             android:label="@string/title_activity_show_order" >
         </activity>
     </application>

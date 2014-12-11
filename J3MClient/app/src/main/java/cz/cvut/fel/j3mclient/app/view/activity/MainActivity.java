@@ -31,6 +31,8 @@ public class MainActivity extends Activity {
 
     static boolean refreshing = false;
 
+    public List<BazaarOrder> showedOrders;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +94,8 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent showOrderIntent = new Intent(MainActivity.this, ShowOrder.class);
-                showOrderIntent.putExtra(OrderParameters.ORDER_ID, position);
+                Intent showOrderIntent = new Intent(MainActivity.this, ShowOrder_.class);
+                showOrderIntent.putExtra(OrderParameters.ORDER_ID, MainActivity.this.showedOrders.get(position).getOrderId());
 
                 startActivity(showOrderIntent);
             }
@@ -109,18 +111,17 @@ class DownloadNewOrdersTask extends AsyncTask<MainActivity, Void, List<BazaarOrd
     @Override
     protected List<BazaarOrder> doInBackground(MainActivity... mainActivities) {
         MainActivity.refreshing = true;
-        List<BazaarOrder> newOrders;
         this.mainActivity = mainActivities[0];
 
         try {
-            newOrders = this.mainActivity.service.getNewOrders();
+            this.mainActivity.showedOrders = this.mainActivity.service.getNewOrders();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this.mainActivity, R.string.server_connection_failed, Toast.LENGTH_LONG).show();
             return null;
         }
 
-        return newOrders;
+        return this.mainActivity.showedOrders;
     }
 
     protected void onPostExecute(List<BazaarOrder> orders) {

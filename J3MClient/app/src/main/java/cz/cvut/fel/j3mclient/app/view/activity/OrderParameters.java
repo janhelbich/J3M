@@ -5,6 +5,4 @@ package cz.cvut.fel.j3mclient.app.view.activity;
  */
 public class OrderParameters {
     public static final String ORDER_ID = "order-id";
-    public static final String CURRENCY = "KČ";
-
 }

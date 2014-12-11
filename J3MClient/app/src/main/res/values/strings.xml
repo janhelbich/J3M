@@ -9,13 +9,19 @@
     <string name="order">Order</string>
     <string name="order_id">Order Id</string>
     <string name="order_email">Email</string>
-    <string name="first_name">First name</string>
-    <string name="last_name">Last name</string>
+    <string name="name">Name</string>
     <string name="price">Price</string>
     <string name="products">Products</string>
     <string name="set_order_as_sent">Set order as sent</string>
     <string name="refresh">Refresh</string>
     <string name="server_connection_failed">Server connection failed</string>
+    <string name="pending">pending</string>
+
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="zip">ZIP</string>
+    <string name="transport">Transport</string>
+    <string name="state">State</string>
 
 
 </resources>
