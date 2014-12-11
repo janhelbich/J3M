@@ -15,6 +15,7 @@
     <string name="products">Products</string>
     <string name="set_order_as_sent">Set order as sent</string>
     <string name="refresh">Refresh</string>
+    <string name="server_connection_failed">Server connection failed</string>
 
 
 </resources>
