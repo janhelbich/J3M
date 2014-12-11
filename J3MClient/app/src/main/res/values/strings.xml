@@ -2,7 +2,19 @@
 <resources>
 
     <string name="app_name">J3MClient</string>
-    <string name="list_of_orders">List of orderws</string>
+    <string name="list_of_orders">List of orders</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_show_order">Order details</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="order">Order</string>
+    <string name="order_id">Order Id</string>
+    <string name="order_email">Email</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="price">Price</string>
+    <string name="products">Products</string>
+    <string name="set_order_as_sent">Set order as sent</string>
+    <string name="refresh">Refresh</string>
+
 
 </resources>

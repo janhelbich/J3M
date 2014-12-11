@@ -1,6 +1,7 @@
 package cz.cvut.fel.j3mclient.app.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +13,6 @@ import android.widget.Toast;
 
 import cz.cvut.fel.j3mclient.app.R;
 
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 
 @EActivity
@@ -60,6 +60,11 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, "Position " + position + " was clicked", Toast.LENGTH_LONG).show();
+
+                Intent showOrderIntent = new Intent(MainActivity.this, ShowOrder.class);
+                showOrderIntent.putExtra(OrderParameters.ORDER_ID, position);
+
+                startActivity(showOrderIntent);
             }
         });
     }
