@@ -44,6 +44,14 @@ public class BazaarRESTServiceImpl implements BazaarRESTService {
 
 	@Override
 	@GET
+	@Path("/allorders")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<BazaarOrder> getAllOrders() {
+		return dao.findAllOrders();
+	}
+	
+	@Override
+	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getHello(@QueryParam("msg") String msg) {

@@ -43,4 +43,6 @@ public interface BazaarRESTService {
 	 */
 	public BazaarOrder updateOrder(Long clientId, BazaarOrder order);
 
+	List<BazaarOrder> getAllOrders();
+
 }
